@@ -11,8 +11,6 @@ import ipadic
 import re
 from PIL import Image
 
-#テキストデータ
-text = ""
 
 def mecab_tokenizer(text):
 
@@ -41,17 +39,3 @@ def mecab_tokenizer(text):
 
     return " ".join(token_list)
 
-words = mecab_tokenizer(text)
-
-font_path = "ZenMaruGothic-Black.ttf"
-
-colormap="coolwarm"
-
-wordcloud = WordCloud(font_path=font_path)
-wordcloud.generate(text)
-
-plt.figure(figsize=(10,10))
-plt.imshow(wordcloud, interpolation="bilinear")
-plt.axis("off")
-
-plt.show()

@@ -15,7 +15,7 @@ import ipadic
 import re
 from PIL import Image
 
-import wordcloudtest000
+import wordcloudtest001
 
 # API情報
 DEVELOPER_KEY = 'AIzaSyA4Oe6xjAJquiTIPS_Duawy1DTtXznNObE'   # ←準備で用意した各自のAPIキーを入力
@@ -50,10 +50,51 @@ df4 = pd.DataFrame(list(df['snippet']))[['title',]]
 df3 = pd.concat([df1,df2], axis = 1)
 
 
+#テキスト選別
+text = ""
+#アルファベットを含む文字列を排除
+haijo_list1 = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"]
+haijo_list2 = []
+for i in haijo_list1:
+    haijo_list2.append(i.upper())
 
-text = df4
-text = "私はパイソンを学びます"
-words = mecab_tokenizer(text)
+flag = False
+for item in df4["title"]:
+  strstr = item.split()
+  for s in strstr:
+    if not s[0] == "#":
+      for i in haijo_list1:
+         if not s[0] == i:
+            flag = True
+
+      for i in haijo_list2:
+         if not s[0] == i:
+            flag = True         
+
+    if flag:
+      text = text + s + " "
+      flag = False
+
+print(text)
+
+'''
+tagger = MeCab.Tagger()
+parse = tagger.parse(text)
+'''
+
+'''
+url = "https://www.aozora.gr.jp/cards/000081/files/46322_24347.html"
+response = requests.get(url)
+soup = BeautifulSoup(response.content, "html.parser")
+text = soup.get_text()
+'''
+
+
+
+
+#words = wordcloudtest001.mecab_tokenizer(text)
+
+words = text
 
 font_path = "ZenMaruGothic-Black.ttf"
 
@@ -68,4 +109,3 @@ plt.imshow(wordcloud, interpolation="bilinear")
 plt.axis("off")
 
 plt.show()
-
