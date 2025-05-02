@@ -64,7 +64,7 @@ wordcloud = WordCloud(
 #    mask=mask
     ).generate(words)
 '''
-wordcloud = WordCloud(font_path=font_path)
+wordcloud = WordCloud()
 wordcloud.generate(text)
 
 

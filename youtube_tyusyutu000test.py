@@ -3,6 +3,20 @@ from apiclient.discovery import build
 from apiclient.errors import HttpError
 import pandas as pd
 
+import numpy as np
+import unicodedata
+import MeCab
+from collections import Counter
+import requests
+from bs4 import BeautifulSoup
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import ipadic
+import re
+from PIL import Image
+
+import wordcloudtest000
+
 # API情報
 DEVELOPER_KEY = 'AIzaSyA4Oe6xjAJquiTIPS_Duawy1DTtXznNObE'   # ←準備で用意した各自のAPIキーを入力
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -25,7 +39,6 @@ search_response = youtube.search().list(
   maxResults=50,
 ).execute()
 
-print(search_response)
 
 df = pd.DataFrame(search_response["items"])
 #各動画毎のvideoIdを取得
@@ -36,6 +49,23 @@ df4 = pd.DataFrame(list(df['snippet']))[['title',]]
 # df1とdf2を結合
 df3 = pd.concat([df1,df2], axis = 1)
 
-print(df4)
 
+
+text = df4
+text = "私はパイソンを学びます"
+words = mecab_tokenizer(text)
+
+font_path = "ZenMaruGothic-Black.ttf"
+
+colormap="coolwarm"
+
+wordcloud = WordCloud(font_path=font_path)
+wordcloud.generate(words)
+
+
+plt.figure(figsize=(10,10))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+
+plt.show()
 
