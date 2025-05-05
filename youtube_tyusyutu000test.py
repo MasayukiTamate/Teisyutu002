@@ -57,9 +57,13 @@ haijo_list1 = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 haijo_list2 = []
 for i in haijo_list1:
     haijo_list2.append(i.upper())
-haijo_list3 = ["切り抜き",
-              "なにか"
+print("はじまりはじまり")
+print(haijo_list1)
 
+haijo_list3 = ["切り抜き",
+              "V"
+]
+haijo_list4 = ["VTUBER"
 ]
 
 #検閲エンジン
@@ -70,43 +74,33 @@ for item in df4["title"]:
     if not s[0] == "#":
       for i in haijo_list1:
          if not s[0] == i:
-            flag = True
+          for l in haijo_list2:
+            if not s[0] == l:
+              for j in haijo_list3:
+                if not s[0] == j:
+                  for k in haijo_list4:
+                    if not s == k:
+                      flag = True
 
-      for i in haijo_list2:
-         if not s[0] == i:
-            flag = True         
 
     if flag:
       text = text + s + " "
       flag = False
 
-print(text)
 
-'''
-tagger = MeCab.Tagger()
-parse = tagger.parse(text)
-'''
+words = wordcloudtest001.mecab_tokenizer(text)
+print(words)
 
-'''
-url = "https://www.aozora.gr.jp/cards/000081/files/46322_24347.html"
-response = requests.get(url)
-soup = BeautifulSoup(response.content, "html.parser")
-text = soup.get_text()
-'''
-
-
-
-
-#words = wordcloudtest001.mecab_tokenizer(text)
-
-words = text
-
+#ワードクラウド生成
 font_path = "ZenMaruGothic-Black.ttf"
-
 colormap="coolwarm"
 
-wordcloud = WordCloud(font_path=font_path)
-wordcloud.generate(words)
+wordcloud = WordCloud(
+  width=1000,
+  height=1000,
+  font_path=font_path,
+
+).generate(words)
 
 
 plt.figure(figsize=(10,10))

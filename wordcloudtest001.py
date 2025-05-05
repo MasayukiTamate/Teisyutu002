@@ -25,7 +25,8 @@ def mecab_tokenizer(text):
     replaced_text = re.sub(r'[\[\ [] \]]', ' ',replaced_text)
     replaced_text = re.sub(r'[@＠]\w+', "", replaced_text)
     replaced_text = re.sub(r'\d+\.*\d*', "", replaced_text)
-
+    
+    replaced_text = re.sub(r'# = .', "", replaced_text)
 
     parsed_lines = mc.parse(replaced_text).split("\n")[:-2]
 
