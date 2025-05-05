@@ -57,7 +57,12 @@ haijo_list1 = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 haijo_list2 = []
 for i in haijo_list1:
     haijo_list2.append(i.upper())
+haijo_list3 = ["切り抜き",
+              "なにか"
 
+]
+
+#検閲エンジン
 flag = False
 for item in df4["title"]:
   strstr = item.split()
