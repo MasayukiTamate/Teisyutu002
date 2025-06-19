@@ -1,6 +1,8 @@
 #　モジュールのインポート
-from apiclient.discovery import build
-from apiclient.errors import HttpError
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+#from apiclient.discovery import build
+#from apiclient.errors import HttpError
 import pandas as pd
 
 import numpy as np
@@ -94,14 +96,14 @@ print(words)
 
 #ワードクラウド生成
 font_path = "ZenMaruGothic-Black.ttf"
-colormap="coolwarm"
+#colormap="coolwarm"
 
 wordcloud = WordCloud(
   width=1000,
   height=1000,
   font_path=font_path,
 
-).generate(words)
+).generate(text)
 
 
 plt.figure(figsize=(10,10))
