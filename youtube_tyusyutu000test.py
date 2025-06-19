@@ -58,6 +58,7 @@ haijo_list2 = []
 for i in haijo_list1:
     haijo_list2.append(i.upper())
 print("はじまりはじまり")
+print("どうするか")
 print(haijo_list1)
 
 haijo_list3 = ["切り抜き",
