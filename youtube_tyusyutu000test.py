@@ -38,7 +38,7 @@ search_response = youtube.search().list(
   part='id,snippet',
   order='date',
   type='video',
-  maxResults=50,
+  maxResults=100,
 ).execute()
 
 
@@ -59,9 +59,7 @@ haijo_list1 = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 haijo_list2 = []
 for i in haijo_list1:
     haijo_list2.append(i.upper())
-print("はじまりはじまり")
-print("どうするか")
-print(haijo_list1)
+
 
 haijo_list3 = ["切り抜き",
               "V"
@@ -90,7 +88,23 @@ for item in df4["title"]:
       text = text + s + " "
       flag = False
 
+print(text)
+print(" ")
+text = re.sub(r'#', ' ',text)
+text = re.sub(r'＃', ' ',text)
+text = re.sub(r'【　】【　】', ' ',text)
+text = re.sub(r'【', ' ',text)
+text = re.sub(r'】', ' ',text)
 
+
+text = re.sub(r'/',' ',text)
+text = re.sub(r'／',' ',text)
+
+text = re.sub(r'！',' ',text)
+text = re.sub(r'!',' ',text)
+
+print(text)
+print(" ")
 words = wordcloudtest001.mecab_tokenizer(text)
 print(words)
 
